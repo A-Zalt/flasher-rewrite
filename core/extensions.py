@@ -16,7 +16,7 @@ def load(bot: commands.Bot or commands.AutoShardedBot, extensions: tuple=None):
             try:
                 bot.load_extension(extension)
                 logging.info(f"An extension \"{extension}\" loaded")
-            except:
+            except: #pylint: disable=bare-except
                 error = traceback.format_exc()
                 logging.error(f"An extension \"{extension}\" is not loaded.\n" + error)
 
