@@ -1,4 +1,5 @@
-# flasher-rewrite [![CodeFactor](https://www.codefactor.io/repository/github/tuxlabore/flasher-rewrite/badge)](https://www.codefactor.io/repository/github/tuxlabore/flasher-rewrite)
+# flasher-rewrite
+[![CodeFactor](https://www.codefactor.io/repository/github/tuxlabore/flasher-rewrite/badge)](https://www.codefactor.io/repository/github/tuxlabore/flasher-rewrite)
 flasher bot version 2.0-rewrite
 
 ## How to run
