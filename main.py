@@ -1,9 +1,6 @@
 import discord
 from discord.ext import commands
 
-import sys
-sys.dont_write_bytecode = True
-
 import core.bot
 import core.config
 
