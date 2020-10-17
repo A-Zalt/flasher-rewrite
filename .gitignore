@@ -127,3 +127,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Code editor files
+
+.vscode/
+
+# Sensitive info
+
+config.yaml
