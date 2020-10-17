@@ -17,7 +17,8 @@ class BotClass(commands.AutoShardedBot):
     """The main class of a bot."""
     def __init__(self):
         self.config = load_config()
-        super().__init__(self.config['prefix'])
+        super().__init__(self.config['prefix'], 
+            help_command=None) # Disables standart help command
 
         self._extensions_loaded = False
 
