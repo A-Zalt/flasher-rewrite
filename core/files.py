@@ -4,16 +4,16 @@ import yaml
 import os
 
 def load(path: str='config.yaml'):
-    """Loads the bot config.
+    """Loads yaml file.
     
     Arguments
     ---------
     
-    path: str = 'config.yaml' - Path to config file"""
+    path: str = 'config.yaml' - Path to config file. By default bot config"""
     file = Path(path).open()
     result = yaml.safe_load(file)
 
-    debug('Config loaded and parsed succesful')
+    info(f'YAML file {path} loaded and parsed succesful')
 
     return result
 

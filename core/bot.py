@@ -3,7 +3,7 @@ import logging
 import traceback
 from time import ctime
 
-from .config import load as load_config
+from .files import load as load_config
 from .extensions import load as load_extensions
 
 logging.basicConfig(level=logging.INFO,

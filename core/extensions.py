@@ -1,7 +1,7 @@
 from discord.ext import commands
 import logging
 import traceback
-from .config import load as load_config
+from .files import load as load_config
 
 def load(bot: commands.Bot or commands.AutoShardedBot, extensions: tuple=None):
     """Loads bot extensions.

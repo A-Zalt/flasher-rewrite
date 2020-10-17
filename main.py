@@ -3,11 +3,11 @@ import discord
 from discord.ext import commands
 
 import core.bot
-import core.config
+import core.files
 
 if __name__ == "__main__":
-    config = core.config.load()
-    core.config.change_environment_variables()
+    config = core.files.load()
+    core.files.change_environment_variables()
     
     bot = core.bot.BotClass()
     bot.run(config['token'])
