@@ -1,17 +1,10 @@
 from discord.ext import commands
-import logging
 import traceback
+import logging
 from time import ctime
 
 from .files import load as load_config
 from .extensions import load as load_extensions
-
-logging.basicConfig(level=logging.INFO,
-            format=u'%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s',
-            handlers=[
-                logging.FileHandler(f"logs/{ctime()}.log"),
-                logging.StreamHandler()
-            ])
 
 class BotClass(commands.AutoShardedBot):
     """The main class of a bot."""
