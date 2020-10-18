@@ -146,3 +146,5 @@ class PrefixesSQL(SQL):
             await self.rawDelete(table='prefixes', column='id', value=_id)
             return 'Prefix reseted' # True
         await self.rawUpdate('prefixes', 'id', 'value=EXCLUDED.value', _id, value) # table=prefixes, primary_key=_id, update_params='value=EXCLUDED.value'
+
+CREATE_TABLES = ()

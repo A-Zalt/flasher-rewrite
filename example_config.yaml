@@ -5,3 +5,5 @@ prefix: f. # Place here your prefix
 extensions: # Cogs
   - jishaku
   - cogs.info
+
+sqlPath: postgresql://user@hostname:5432/database
