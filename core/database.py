@@ -32,7 +32,7 @@ class SQL:
         ---------
         table: str - Name of table
         """
-        result = await self.sql(f"SELECT * FROM {table}")
+        result = await self.sql(f"SELECT * FROM {table}") # nosec
         return result
 
     async def rawGet(self, table: str, column: str, value):
@@ -45,7 +45,7 @@ class SQL:
         column: str - Column where will be check
         value - Value of column for check
         """
-        result = await self.sql(f"SELECT * FROM {table} WHERE {column}=$1", value)
+        result = await self.sql(f"SELECT * FROM {table} WHERE {column}=$1", value) # nosec
         return result
 
     async def rawDelete(self, table: str, column: str, value):
@@ -58,7 +58,7 @@ class SQL:
         column: str - Column where will be check
         value - Value of column for check
         """
-        await self.sql(f"DELETE FROM {table} WHERE {column}=$1", value)
+        await self.sql(f"DELETE FROM {table} WHERE {column}=$1", value) # nosec
 
     async def rawWrite(self, table: str, *values):
         """
@@ -97,7 +97,7 @@ class SQL:
         for i in range(1, len(values)+1): #  '$1, $2, $3'
             args_description += f'${i}, ' if i != len(values) else f'${i}'
 
-        request = f"INSERT INTO {table} VALUES ({args_description}) ON CONFLICT ({primary_key}) DO UPDATE SET {update_params} RETURNING *"
+        request = f"INSERT INTO {table} VALUES ({args_description}) ON CONFLICT ({primary_key}) DO UPDATE SET {update_params} RETURNING *" # nosec
         return await self.sql(request, *values)
 
 
