@@ -1,7 +1,6 @@
-import discord
 import traceback
+import discord
 from discord.ext import commands
-from logging import info
 
 class ErrorHandler(commands.Cog):
     def __init__(self, bot):
