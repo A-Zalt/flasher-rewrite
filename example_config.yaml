@@ -5,5 +5,10 @@ prefix: f. # Place here your prefix
 extensions: # Cogs
   - jishaku
   - cogs.info
+  - cogs.error_handler
 
 sqlPath: postgresql://user@hostname:5432/database
+
+channels.errors: 730072120477876245 # Channel ID
+
+invite: https://discord.gg/1KVQ2ZP # Example invite
