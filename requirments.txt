@@ -4,3 +4,4 @@ jishaku
 git+https://gitlab.com/naomi-dev/naomi-paginator.git/
 coloredlogs
 asyncpg
+humanize

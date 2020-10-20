@@ -6,6 +6,8 @@ extensions: # Cogs
   - jishaku
   - cogs.info
   - cogs.error_handler
+  - cogs.config
+  - cogs.admin
 
 sqlPath: postgresql://user@hostname:5432/database
 

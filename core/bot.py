@@ -22,7 +22,10 @@ class BotClass(commands.AutoShardedBot):
         super().__init__(config['prefix'],
             help_command=None) # Disables standart help command
         self.config = config
+        self.db = db
+
         self._extensions_loaded = False
+
         self._localeSQL = LocaleSQL(db, self.config)
         self.locales = load_locales()
         self.languages = {} # 407524032292847624: uk_UA
