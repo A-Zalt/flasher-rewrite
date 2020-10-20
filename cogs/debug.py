@@ -13,5 +13,9 @@ class Debug(commands.Cog):
     async def format(self, ctx):
         await ctx.send(ctx._('debug.l10n.format', botname=self.bot.user.name))
 
+    @l10n.command()
+    async def notexists(self, ctx):
+        await ctx.send(ctx['debug.l10n.notexists'])
+
 def setup(bot):
     bot.add_cog(Debug(bot))

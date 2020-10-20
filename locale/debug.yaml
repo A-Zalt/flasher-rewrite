@@ -1,0 +1,10 @@
+                    # Localization info
+
+locale.author: TL
+locale.code: debug
+locale.name: Debug language
+
+                    # Commands
+
+debug.l10n: Localization test.
+debug.l10n.format: Localization test (with .format function) {botname} bot
