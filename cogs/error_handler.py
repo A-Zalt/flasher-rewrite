@@ -15,7 +15,7 @@ class ErrorHandler(commands.Cog):
             description=description)
 
         if check(commands.CommandNotFound):
-            pass
+            return
 
         elif check(commands.NotOwner):
             embed = generate_embed('Вы не являетесь владельцем бота что бы исполнить эту команду!')
