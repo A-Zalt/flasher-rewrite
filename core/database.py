@@ -102,15 +102,14 @@ class SQL:
 
 
 class PrefixesSQL(SQL):
-    def __init__(self, pool: asyncpg.pool.Pool, config: dict):
-        """
-        Requests to DB associated with prefixes.
+    """Requests to DB associated with prefixes.
 
-        Arguments
-        ---------
-        pool: asyncpg.pool.Pool - Opened pool to DB
-        config: dict - Bot config
-        """
+    Arguments
+    ---------
+    pool: asyncpg.pool.Pool - Opened pool to DB
+    config: dict - Bot config
+    """
+    def __init__(self, pool: asyncpg.pool.Pool, config: dict):
         super().__init__(pool)
         self.standartValue = config.get("prefix")
 
@@ -131,7 +130,7 @@ class PrefixesSQL(SQL):
         # if value not recorded in table self.sql returns [], so we cannot use .get
         return prefix
 
-    async def set(self, obj: Union[User, Guild], value: str):
+    async def set(self, obj: Union[User, Guild], value: str) -> None:
         """
         (Re)sets user/guild prefix.
 
@@ -147,4 +146,53 @@ class PrefixesSQL(SQL):
             return 'Prefix reseted' # True
         await self.rawUpdate('prefixes', 'id', 'value=EXCLUDED.value', _id, value) # table=prefixes, primary_key=_id, update_params='value=EXCLUDED.value'
 
-CREATE_TABLES = ()
+class LocaleSQL(SQL):
+    """Requests to DB associated with locale.
+
+    Arguments
+    ---------
+    pool: asyncpg.pool.Pool - Opened pool to DB
+    config: dict - Bot config
+    """
+    def __init__(self, pool: asyncpg.pool.Pool, config: dict):
+        self.db = pool
+        self.baseLanguage = config['locale.base']
+
+    async def get(self, obj: Union[User, Guild]) -> str:
+        """
+        Get user/guild's locale from DB.
+
+        Arguments
+        ---------
+        obj: discord.User or discord.Guild
+        """
+        _id = obj.id
+
+        result = await self.rawGet(table="locale", column="id", value=_id)
+
+        prefix = result.get("value") if not isinstance(result, list) else self.baseLanguage
+        # .get is dict function,
+        # if value not recorded in table self.sql returns [], so we cannot use .get
+        return prefix
+
+    async def set(self, obj: Union[User, Guild], value: str):
+        """
+        Sets user/guild locale.
+
+        Arguments
+        ---------
+        obj: discord.User or discord.Guild
+        value: str - new locale
+        """
+        _id = obj.id
+
+        await self.rawUpdate('locale', 'id', 'value=EXCLUDED.value', _id, value) # table=prefixes, primary_key=_id, update_params='value=EXCLUDED.value'
+    
+
+
+CREATE_TABLES = (
+    """CREATE TABLE IF NOT EXISTS locale (
+        id bigint CHECK (id > 0) PRIMARY KEY,
+        value varchar(8) 
+    );""",
+    )

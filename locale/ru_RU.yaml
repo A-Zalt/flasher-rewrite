@@ -1,1 +1,10 @@
-a: bc
+                    # Localization info
+
+locale.author: TL
+locale.code: ru_RU
+locale.name: Русский (Россия)
+
+                    # Commands
+
+debug.l10n: Тестирование локализации.
+debug.l10n.format: Тестирование локализации (с форматированием) бота {botname}
