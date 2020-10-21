@@ -35,7 +35,7 @@ class BotClass(commands.AutoShardedBot):
             load_extensions(self)
             self._extensions_loaded = True
 
-        logging.info(f'Ready at {ctime()}. Logged in as {self.user.name} (ID:{self.user.id})')
+        logging.info(f'Ready. Logged in as {self.user.name} (ID:{self.user.id})')
 
     async def get_context(self, message, *, cls=CustomContext):
         return await super().get_context(message, cls=cls)
