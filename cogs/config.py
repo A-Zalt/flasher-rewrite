@@ -15,7 +15,7 @@ class Configuration(commands.Cog):
             
             embed = discord.Embed(title=ctx['config.locale.notexists'],
                 description=ctx._('config.locale.notexists.description', languages=languages),
-                color=discord.Colour.dark_green())
+                color=discord.Colour.dark_red())
             
             await ctx.send(embed=embed)
             return
