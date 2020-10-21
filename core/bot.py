@@ -28,7 +28,6 @@ class BotClass(commands.AutoShardedBot):
 
         self._localeSQL = LocaleSQL(db, self.config)
         self.locales = load_locales()
-        self.languages = {} # 407524032292847624: uk_UA
 
     async def on_ready(self):
         if not self._extensions_loaded: # Loading extensions if not previously loaded
@@ -37,14 +36,26 @@ class BotClass(commands.AutoShardedBot):
 
         logging.info(f'Ready. Logged in as {self.user.name} (ID:{self.user.id})')
 
-    async def get_context(self, message, *, cls=CustomContext):
-        return await super().get_context(message, cls=cls)
+    async def get_context(self, msg, *, cls=CustomContext):
+        ctx = await super().get_context(msg, cls=cls)
+        ctx.language = await self.get_language(msg)
+        return ctx
 
-    async def on_message(self, msg):
-        self.languages[msg.author.id] = await self._localeSQL.get(msg.author) # 407524032292847624: uk_UA
-        if msg.guild:
-            self.languages[msg.guild] = await self._localeSQL.get(msg.guild)
+    async def get_language(self, msg):
+        guild_lang = await self._localeSQL.get(msg.guild) if msg.guild else None
+        user_lang = await self._localeSQL.get(msg.guild)
+        base_lang = self.config['locale.base']
+
+        lang = user_lang or guild_lang or base_lang
+
+        if not lang in self.locales.keys():
+            lang = base_lang
+        return lang
+        
+
+    async def on_message_edit(self, _, msg):
         await self.process_commands(msg)
+        
 
 async def run(config: dict):
     """Coroutine which starts bot and connects database."""
