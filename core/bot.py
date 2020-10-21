@@ -1,10 +1,9 @@
+import discord
 from discord.ext import commands
-import traceback
+
 import logging
 import asyncpg
-from time import ctime
 
-from .files import load as load_config
 from .files import load_locales
 from .extensions import load as load_extensions
 from .database import SQL, CREATE_TABLES, LocaleSQL

@@ -193,6 +193,6 @@ class LocaleSQL(SQL):
 CREATE_TABLES = (
     """CREATE TABLE IF NOT EXISTS locale (
         id bigint CHECK (id > 0) PRIMARY KEY,
-        value varchar(8) 
+        value varchar(8)
     );""",
     )

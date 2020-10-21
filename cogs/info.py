@@ -76,6 +76,10 @@ class Info(commands.Cog):
             p.add_page(embedPage)
 
         await p.call_controller()
+    
+    @commands.command(aliases=['botinfo'])
+    async def info(self, ctx):
+        discord.Embed()
 
 def setup(bot):
     bot.add_cog(Info(bot))

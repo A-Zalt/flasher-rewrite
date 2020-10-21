@@ -12,7 +12,7 @@ def load(bot: commands.Bot or commands.AutoShardedBot, extensions: tuple=None):
     extensions: tuple = None - Custom extensions list. If not provided function will get it from the config by yourself"""
     if not extensions:
         extensions = load_config()['extensions']
-    
+
     for extension in extensions:
             try:
                 bot.load_extension(extension)
