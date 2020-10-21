@@ -17,5 +17,9 @@ class Debug(commands.Cog):
     async def notexists(self, ctx):
         await ctx.send(ctx['debug.l10n.notexists'])
 
+    @commands.command()
+    async def argument_check(self, ctx, arg: int):
+        await ctx.send(arg)
+
 def setup(bot):
     bot.add_cog(Debug(bot))
