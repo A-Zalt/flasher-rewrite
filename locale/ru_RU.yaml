@@ -20,7 +20,18 @@ config.locale.notexists: Этого языка нету в боте!
 config.locale.notexists.description: Доступные языки — {languages}
 config.locale.succesfull: Язык изменён успешно
 
-                        # Error handler
+config.prefix.notset: Не установлено
+config.prefix.notguild: Исполнено в личных сообщениях
+config.prefix.status: |-
+    **Ваш персональный префикс — `{0}`**
+    Префикс этого сервера — `{1}`
+    Стандартный префикс бота — `{2}` (или упоминание)
+prefix.toolong: Максимальная длина префикса — 7 символов!
+prefix.succesfull: Префикс изменён успешно!
+prefix.reset.succesfull: Префикс сброшен успешно!
+prefix.reset: [reset, сброс, ресет, удалить]
+
+   #                    # Error handler
 
 error.title: Похоже была вызвана ошибка во время исполнения команды...
 error.notowner: Вы не являетесь владельцем бота что бы исполнить эту команду!
@@ -53,3 +64,10 @@ help.update: Обновление бота.
 help.restart: Перезагрузить бота
 help.argument_check: Отладочная команда для проверки работы с аргументами
 help.sql: Воспроизвести SQL запрос
+help.prefix: Просмотр префикса
+help.prefix_user: |- 
+    Изменение персонального префикса.
+    Используйте в качестве аргумента reset что бы сбросить префикс.
+help.prefix_server: |-
+    Изменение префикса сервера.
+    Используйте в качестве аргумента reset что бы сбросить префикс.
