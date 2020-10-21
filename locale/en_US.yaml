@@ -1,0 +1,31 @@
+
+                    # Localization info
+
+locale.author: A_Zalt
+locale.code: en_US
+locale.name: English (United States)
+
+                    # Commands
+
+global.wip: Work in progress
+
+debug.l10n: Localization test.
+debug.l10n.format: Localization test (with formatting) {botname}
+
+config.locale.get.title: Localization
+config.locale.get.description: |-
+  **Your own prefix — `{user}`**
+  This server's prefix — `{guild}`
+config.locale.get.notAGuild: Executed in DMs
+config.locale.notexists: This language is not supported!
+config.locale.notexists.description: Available languages — {languages}
+config.locale.succesfull: Language changed successfully
+
+                      # Error handler
+
+error.title: Seems like an error has occurred while executing this command...
+error.notowner: You must be the owner of the bot to execute this command!
+error.unknown.title: An unknown error has occurred
+error.unknown.description: |- # Please leave the inscription that the server is Russian-speaking. Thanks.
+   Bot developer is notified about the error already.
+   Click the title to join the support server.
