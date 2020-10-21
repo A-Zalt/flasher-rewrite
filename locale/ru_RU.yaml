@@ -31,7 +31,7 @@ prefix.succesfull: Префикс изменён успешно!
 prefix.reset.succesfull: Префикс сброшен успешно!
 prefix.reset: [reset, сброс, ресет, удалить]
 
-   #                    # Error handler
+                       # Error handler
 
 error.title: Похоже была вызвана ошибка во время исполнения команды...
 error.notowner: Вы не являетесь владельцем бота что бы исполнить эту команду!
@@ -39,8 +39,8 @@ error.unknown.title: Вызвана неизвестная ошибка
 error.unknown.description: |- # Please leave the inscription that the server is Russian-speaking. Thanks.
     Разработчик бота уже уведомлён об этой ошибке.
     Нажмите на заголовок чтобы перейти на сервер поддержки.
-  
-   #                    # Help 
+error.guild_only: Эту команду можно использовать только на сервере!
+                       # Help 
 
 help.embed.notfound: Нам не удалось найти команду `{0}{1}`
 help.embed.aliases: Варианты использования
