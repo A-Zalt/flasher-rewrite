@@ -111,7 +111,7 @@ class PrefixesSQL(SQL):
     """
     def __init__(self, pool: asyncpg.pool.Pool, config: dict):
         super().__init__(pool)
-        self.standartValue = config.get("prefix")
+        self.standartValue = config["prefix"]
 
     async def get(self, obj: Union[User, Guild]) -> str:
         """
@@ -125,27 +125,29 @@ class PrefixesSQL(SQL):
 
         result = await self.rawGet(table="prefixes", column="id", value=_id)
 
-        prefix = result.get("value") if not isinstance(result, list) else self.standartValue
+        prefix = result.get("value") if not isinstance(result, list) else None
         # .get is dict function,
         # if value not recorded in table self.sql returns [], so we cannot use .get
         return prefix
 
-    async def set(self, obj: Union[User, Guild], value: str) -> None:
+    async def set(self, obj: Union[User, Guild], value: str=None) -> None:
         """
-        (Re)sets user/guild prefix.
+        Sets user/guild prefix.
 
         Arguments
         ---------
         obj: discord.User or discord.Guild
-        value: str - new prefix
+        value: str = None - new prefix. Leave blank for delete
         """
         _id = obj.id
-
-        if value == self.standartValue:
-            await self.rawDelete(table='prefixes', column='id', value=_id)
-            return 'Prefix reseted' # True
+        if not value:
+            await self.rawDelete('prefixes', 'id', _id)
         await self.rawUpdate('prefixes', 'id', 'value=EXCLUDED.value', _id, value) # table=prefixes, primary_key=_id, update_params='value=EXCLUDED.value'
 
+    async def reset(self, obj: Union[User, Guild]) -> None:
+        """await .set(obj) alias."""
+        await self.set(obj)
+        
 class LocaleSQL(SQL):
     """Requests to DB associated with locale.
 
@@ -175,7 +177,7 @@ class LocaleSQL(SQL):
         # if value not recorded in table self.sql returns [], so we cannot use .get
         return prefix
 
-    async def set(self, obj: Union[User, Guild], value: str):
+    async def set(self, obj: Union[User, Guild], value: str) -> None:
         """
         Sets user/guild locale.
 
@@ -193,6 +195,10 @@ class LocaleSQL(SQL):
 CREATE_TABLES = (
     """CREATE TABLE IF NOT EXISTS locale (
         id bigint CHECK (id > 0) PRIMARY KEY,
-        value varchar(8) 
+        value varchar(8)
     );""",
+    """CREATE TABLE IF NOT EXISTS prefixes (
+        id bigint CHECK (id > 0) PRIMARY KEY,
+        value varchar(7)
+    );"""
     )

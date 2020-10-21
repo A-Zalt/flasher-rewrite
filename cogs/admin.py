@@ -25,8 +25,8 @@ class Admin(commands.Cog):
         await ctx.send('> Restart')
         os.execl(sys.executable, sys.executable, *sys.argv) # nosec
 
-    @commands.group(name="sql", 
-        invoke_without_command=True, 
+    @commands.group(name="sql",
+        invoke_without_command=True,
         hidden=True)
     async def sql_cmd(self, ctx, *, code: jishaku.codeblocks.codeblock_converter):
         """Исполнить запрос к PostgreSQL."""

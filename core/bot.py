@@ -1,13 +1,12 @@
+import discord
 from discord.ext import commands
-import traceback
+
 import logging
 import asyncpg
-from time import ctime
 
-from .files import load as load_config
 from .files import load_locales
 from .extensions import load as load_extensions
-from .database import SQL, CREATE_TABLES, LocaleSQL
+from .database import SQL, CREATE_TABLES, LocaleSQL, PrefixesSQL
 from .context import CustomContext
 
 class BotClass(commands.AutoShardedBot):
@@ -19,14 +18,15 @@ class BotClass(commands.AutoShardedBot):
         ---------
         config: dict - Bot config
         db: asyncpg.pool.Pool - Database pool"""
-        super().__init__(config['prefix'],
+        super().__init__(self.get_prefix,
             help_command=None) # Disables standart help command
         self.config = config
         self.db = db
 
         self._extensions_loaded = False
 
-        self._localeSQL = LocaleSQL(db, self.config)
+        self._prefixesSQL = PrefixesSQL(db, config)
+        self._localeSQL = LocaleSQL(db, config)
         self.locales = load_locales()
 
     async def on_ready(self):
@@ -52,6 +52,12 @@ class BotClass(commands.AutoShardedBot):
             lang = base_lang
         return lang
         
+    async def get_prefix(self, msg):
+        guild_prefix = await self._prefixesSQL.get(msg.guild) if msg.guild else None
+        user_prefix = await self._prefixesSQL.get(msg.author)
+        base_prefix = self.config['prefix']
+
+        return commands.when_mentioned_or((user_prefix or guild_prefix or base_prefix))(self, msg)
 
     async def on_message_edit(self, _, msg):
         await self.process_commands(msg)

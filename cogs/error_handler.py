@@ -20,6 +20,9 @@ class ErrorHandler(commands.Cog):
         elif check(commands.NotOwner):
             embed = generate_embed('error.notowner')
 
+        elif check(commands.NoPrivateMessage):
+            embed = generate_embed('error.guild_only')
+
         elif check(commands.MissingRequiredArgument) or check(commands.BadArgument):
             return await ctx.invoke(self.bot.get_command('help'), command=ctx.command.qualified_name)
 
