@@ -21,5 +21,9 @@ class Debug(commands.Cog):
     async def argument_check(self, ctx, arg: int):
         await ctx.send(arg)
 
+    @commands.command()
+    async def error(self, ctx):
+        raise Exception()
+
 def setup(bot):
     bot.add_cog(Debug(bot))

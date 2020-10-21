@@ -18,8 +18,7 @@ class Admin(commands.Cog):
     async def cog_check(self, ctx):
         if await self.bot.is_owner(ctx.author):
             return True
-        else:
-            raise commands.NotOwner()
+        raise commands.NotOwner()
 
     @commands.command(hidden=True, aliases=['reboot'])
     async def restart(self, ctx):
@@ -82,4 +81,3 @@ class Admin(commands.Cog):
 def setup(bot):
     cog = Admin(bot)
     bot.add_cog(cog)
-
