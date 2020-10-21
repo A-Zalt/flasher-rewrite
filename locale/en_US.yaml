@@ -1,0 +1,22 @@
+  
+                    # Localization info
+
+locale.author: A_Zalt
+locale.code: en_US
+locale.name: English (United States)
+
+                    # Commands
+
+global.wip: Work in progress
+
+debug.l10n: Localization test.
+debug.l10n.format: Localization test (with formatting) {botname}
+
+config.locale.get.title: Localization
+config.locale.get.description: |-
+  **Your own prefix — `{user}`**
+  This server's prefix — `{guild}`
+config.locale.get.notAGuild: Executed in DMs
+config.locale.notexists: This language is not supported!
+config.locale.notexists.description: Available languages — {languages}
+config.locale.succesfull: Language changed successfully
