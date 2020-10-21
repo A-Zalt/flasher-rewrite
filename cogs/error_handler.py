@@ -21,7 +21,7 @@ class ErrorHandler(commands.Cog):
             embed = generate_embed('Вы не являетесь владельцем бота что бы исполнить эту команду!')
 
         elif check(commands.MissingRequiredArgument) or check(commands.BadArgument):
-            return await ctx.invoke(self.bot.get_command('help'), command=ctx.command.name)
+            return await ctx.invoke(self.bot.get_command('help'), command=ctx.command.qualified_name)
 
         else:
             embed = None

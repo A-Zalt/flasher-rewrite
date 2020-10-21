@@ -6,5 +6,16 @@ locale.name: Русский (Россия)
 
                     # Commands
 
+global.wip: Работа в процессе.
+
 debug.l10n: Тестирование локализации.
 debug.l10n.format: Тестирование локализации (с форматированием) бота {botname}
+
+config.locale.get.title: Локализация
+config.locale.get.description: |-
+  **Ваш личный префикс — `{user}`**
+  Префикс этого сервера — `{guild}`
+config.locale.get.notAGuild: Исполнено в ЛС
+config.locale.notexists: Этого языка нету в боте!
+config.locale.notexists.description: Доступные языки — {languages}
+config.locale.succesfull: Язык изменён успешно

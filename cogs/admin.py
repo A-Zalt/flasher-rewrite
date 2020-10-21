@@ -1,11 +1,13 @@
 import discord
 from discord.ext import commands
 
+from logging import info
 import jishaku
 import os
 import sys
 
 from core.database import SQL # pylint: disable=import-error
+from core.files import load_locales
 
 class Admin(commands.Cog):
     def __init__(self, bot):
@@ -70,6 +72,12 @@ class Admin(commands.Cog):
         if os.system('git pull') != 0:
             return await ctx.send('Error')
         await ctx.invoke(self.restart)
+
+    @commands.command(hidden=True, aliases=["rl", "reload_locales", "rlocale", "reloadl"])
+    async def reload_locale(self, ctx):
+        info('Locale reloaded by owner')
+        self.bot.locales = load_locales()
+        await ctx.send('Reloaded.')
 
 def setup(bot):
     cog = Admin(bot)
