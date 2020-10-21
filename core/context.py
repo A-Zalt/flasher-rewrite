@@ -8,6 +8,7 @@ class CustomContext(commands.Context):
         Arguments
         ---------
         string: str - Localization string name
+        _lack - What to return in case of lack of localization
         args, kwargs - Arguments for format()
 
         Returns
@@ -16,9 +17,9 @@ class CustomContext(commands.Context):
         
         strings = self.bot.locales[self.language]
         value = strings.get(string,
-            f'[{self.language}:{string} translation required]')
+            kwargs.pop('_lack', f'[{self.language}:{string} translation required]'))
         
-        return value.format(*args, **kwargs)
+        return value.format(*args, **kwargs) if isinstance(value, str) else value # In case of _lack=False 
 
     def __getitem__(self, string: str): # ctx['string']
         return self._(string)
