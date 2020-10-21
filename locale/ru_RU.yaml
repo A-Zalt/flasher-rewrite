@@ -19,3 +19,12 @@ config.locale.get.notAGuild: Исполнено в ЛС
 config.locale.notexists: Этого языка нету в боте!
 config.locale.notexists.description: Доступные языки — {languages}
 config.locale.succesfull: Язык изменён успешно
+
+                      # Error handler
+
+error.title: Похоже была вызвана ошибка во время исполнения команды...
+error.notowner: Вы не являетесь владельцем бота что бы исполнить эту команду!
+error.unknown.title: Вызвана неизвестная ошибка
+error.unknown.description: |- # Please leave the inscription that the server is Russian-speaking. Thanks.
+   Разработчик бота уже уведомлён об этой ошибке.
+   Нажмите на заголовок чтобы перейти на сервер поддержки.

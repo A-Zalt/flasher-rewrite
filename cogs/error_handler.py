@@ -11,14 +11,14 @@ class ErrorHandler(commands.Cog):
         check = lambda errorToCheck: isinstance(error, errorToCheck)
         generate_embed = lambda description: discord.Embed(
             color=discord.Colour.dark_red(),
-            title='Похоже была вызвана ошибка во время исполнения команды...',
-            description=description)
+            title=ctx['error.title'],
+            description=ctx[description])
 
         if check(commands.CommandNotFound):
             return
 
         elif check(commands.NotOwner):
-            embed = generate_embed('Вы не являетесь владельцем бота что бы исполнить эту команду!')
+            embed = generate_embed('error.notowner')
 
         elif check(commands.MissingRequiredArgument) or check(commands.BadArgument):
             return await ctx.invoke(self.bot.get_command('help'), command=ctx.command.qualified_name)
@@ -30,9 +30,8 @@ class ErrorHandler(commands.Cog):
             return await ctx.send(embed=embed)
 
         embed_public = discord.Embed(color=discord.Colour.dark_red(),
-            title='Вызвана неизвестная ошибка',
-            description='Разработчик бота уже уведомлён об этой ошибке.\n'
-            'Нажмите на заголовок чтобы перейти на сервер поддержки.',
+            title=ctx['error.unknown.title'],
+            description=ctx['error.unknown.description'],
             url=self.bot.config['invite'])
 
         err = '\n'.join(
